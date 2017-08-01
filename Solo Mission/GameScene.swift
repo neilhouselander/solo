@@ -225,8 +225,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let movePlayerOnToScreenAction = SKAction.moveTo(y: self.size.height*0.12, duration: 0.5)
         let startLevelAction = SKAction.run(startNewLevel)
-        let showLevelNumber = SKAction.run(levelTime)
-        let startGameSequence = SKAction.sequence([showLevelNumber, movePlayerOnToScreenAction, startLevelAction])
+        
+        let startGameSequence = SKAction.sequence([movePlayerOnToScreenAction, startLevelAction])
         player.run(startGameSequence)
         
         
@@ -369,8 +369,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func startNewLevel() {
         
-        let goLevel = SKAction.run(levelTime)
-        self.run(goLevel)
+//        let goLevel = SKAction.run(levelTime)
+//        self.run(goLevel)
+        
+        levelTime()
   
         if self.action(forKey: "spawningEnemies") != nil {
             self.removeAction(forKey: "spawningEnemies")
