@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var levelNumber = 0
     
-    var livesNumber = 3
+    var livesNumber = 5
     
     let livesLabel = SKLabelNode(fontNamed: "The Bold Font")
     
@@ -122,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.zPosition = 100
         self.addChild(scoreLabel)
         
-        livesLabel.text = "Lives: 3"
+        livesLabel.text = "Lives: 5"
         livesLabel.fontSize = 65
         livesLabel.fontColor = SKColor.white
         livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
@@ -191,8 +191,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameScore += 1
         scoreLabel.text = "Score: \(gameScore)"
         
-        if gameScore == 10 || gameScore == 25 || gameScore == 50 {
+        if gameScore == 10 || gameScore == 20 || gameScore == 25 {
             startNewLevel()
+            
         }
         
     }
@@ -223,7 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
         tapToStartLabel.run(deleteSequence)
         
-        let movePlayerOnToScreenAction = SKAction.moveTo(y: self.size.height*0.12, duration: 0.5)
+        let movePlayerOnToScreenAction = SKAction.moveTo(y: self.size.height*0.20, duration: 0.5)
         let startLevelAction = SKAction.run(startNewLevel)
         
         let startGameSequence = SKAction.sequence([movePlayerOnToScreenAction, startLevelAction])
@@ -381,13 +382,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var levelDuration = TimeInterval()
         
         switch levelNumber {
-        case 1: levelDuration = 1.2
-        case 2: levelDuration = 1.0
-        case 3: levelDuration = 0.8
-        case 4: levelDuration = 0.5
+        case 1: levelDuration = 1.5
+        case 2: levelDuration = 1.2
+        case 3: levelDuration = 1.0
+        case 4: levelDuration = 0.8
         default: levelDuration = 0.5
             print("Cannot find level info")
         }
+        
         
         let spawn = SKAction.run(spawnEnemy)//need to do like this as its a function being called as an action
         let waitToSpawn = SKAction.wait(forDuration: levelDuration)
