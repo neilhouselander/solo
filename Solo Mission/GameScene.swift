@@ -105,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         player.setScale(0.40)
-        player.position = CGPoint(x: self.size.width/2, y: 0 - player.size.height)//start off screen
+        player.position = CGPoint(x: self.size.width/2, y: 0 - player.size.height )//start off screen
         player.zPosition = 2
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         player.physicsBody!.affectedByGravity = false
@@ -224,7 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
         tapToStartLabel.run(deleteSequence)
         
-        let movePlayerOnToScreenAction = SKAction.moveTo(y: self.size.height*0.20, duration: 0.5)
+        let movePlayerOnToScreenAction = SKAction.moveTo(y: self.size.height*0.16, duration: 0.5)
         let startLevelAction = SKAction.run(startNewLevel)
         
         let startGameSequence = SKAction.sequence([movePlayerOnToScreenAction, startLevelAction])
